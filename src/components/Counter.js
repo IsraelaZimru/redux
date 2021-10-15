@@ -1,23 +1,23 @@
 import classes from './Counter.module.css';
 import { useSelector, useDispatch } from 'react-redux';
-
+import { counterActions } from '../store/counter-slice';
 
 const Counter = () => {
-  const counter = useSelector(state => state.counter)
-  const show = useSelector(state => state.show)
+  const counter = useSelector(state => state.counter.counter)
+  const show = useSelector(state => state.counter.show)
   const dispatch = useDispatch()
 
   const toggleCounterHandler = () => {
-    dispatch({ type: "toggle" })
+    dispatch(counterActions.toggle())
   };
 
   const increment = (n) => {
-    dispatch({ type: "increment", payload: n })
+    dispatch(counterActions.increment(n)) //אוטומטי כל פרמטר שנכנס לפונ' יהיה  }{type:SOME_UNIQUE_INDETIFIER , payload:parameter}
   }
 
 
   const decrement = () => {
-    dispatch({ type: "decrement" })
+    dispatch(counterActions.decrement())
   }
 
   return (
